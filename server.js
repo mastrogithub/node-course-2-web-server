@@ -1,10 +1,11 @@
 const express = require('express');
 const hbs = require('hbs');
 
+const PORT = process.env.PORT || 3000;
 var app = express();
 
-const PORT = process.env.PORT || 3000;
-hbs.registerPartials(__dirname + '/views/partials')
+hbs.registerPartials(__dirname + '/views/partials');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 
 app.use( express.static(__dirname + '/public') );
@@ -26,4 +27,6 @@ app.get('/about',(req, res) => {
   });
 });
 
-app.listen(3000,() =>{ console.log(`app listening at port: ${PORT}`)});
+app.listen(PORT,() =>{
+  console.log(`app listening at port: ${PORT}`);
+});
